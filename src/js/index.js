@@ -27,6 +27,9 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response == 'Success') {
                         swalSuccess('Welcome Back', 'Successfully Logged In!');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2000);
                     } else if (response == 'Invalid') {
                         swalError('Error', 'Invalid Credentials!');
                     }
@@ -42,5 +45,8 @@ $(document).ready(function () {
 function logout() {
     $.get('api/index/logout.php', function () {
         swalSuccess('Success', 'Logged out Successfully!');
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
     })
 }

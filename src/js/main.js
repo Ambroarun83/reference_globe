@@ -7,7 +7,7 @@ function swalSuccess(title, text) {
         timer: 2000,
         timerProgressBar: true
     }).then(function () {
-        location.reload();
+        // location.reload();
     });
 }
 function swalError(title, text) {
