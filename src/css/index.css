@@ -1,0 +1,61 @@
+
+
+.login_page>.card>.card-body {
+    padding: 40px 0px 0px 0px;
+}
+
+.register_page>.card>.card-body {
+    padding: 40px;
+}
+
+.login_page>.card>.card-footer,
+.register_page>.card>.card-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+#register,
+#login {
+    cursor: pointer;
+    color: blue;
+}
+
+.register_page>.card {
+    width: 100%;
+    height: fit-content;
+    background-color: transparent;
+    box-shadow: 0 0 15px 0;
+}
+
+.login_page>.card {
+    width: 50%;
+    height: 25em;
+    background-color: transparent;
+    box-shadow: 0 0 15px 0;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.head-text {
+    align-self: center;
+    bottom: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 2rem;
+}
+
+.login_page>label,
+.register_page>label {
+    font-weight: bold;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control {
+    margin: 0 0 1rem 0;
+    border: 1px solid #cecece;
+}
