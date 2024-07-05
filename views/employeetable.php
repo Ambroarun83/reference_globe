@@ -4,7 +4,15 @@
     </div>
     <div class="card">
         <div class="card-header">
-            <div class="card-title"><b>Employee Table</b></div>
+            <div class="card-title">
+                <div style="display:flex;justify-content:space-between;">
+                    <b>Employee Table</b>
+                    <div>
+                        <label for="search">Search</label>
+                        <input type="search" name="search" id="search">
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="col-12">
@@ -23,14 +31,13 @@
                                 <th>ID Proof</th>
                                 <th>Action</th>
                             </thead>
-                            <tbody>
-
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card-footer"></div>
     </div>
 </div>
 <div id="add_emp_div" style="display:none">

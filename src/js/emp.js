@@ -1,33 +1,42 @@
 $(document).ready(function () {
-    getEmployeeTable();
+    getEmployeeTable(1, '');
+    getEmployeePageCount('');
 })
-function getEmployeeTable() {
+function getEmployeeTable(page, search) {
     $.ajax({
         url: 'api/home/getEmployeeTable.php',
+        data: { page, search },
         dataType: 'json',
         type: 'post',
         cache: false,
         success: function (response) {
             let appendData = ``;
             let sno = 1;
-            $.each(response, function (key, value) {
-                appendData += `<tr>
-                <td>${sno}</td>
-                <td>${value.emp_name}</td>
-                <td>${value.designation}</td>
-                <td>${value.dob}</td>
-                <td>${value.doj}</td>
-                <td>${value.mobile}</td>
-                <td>${value.email}</td>
-                <td>${value.blood_group}</td>
-                <td><a href='uploads/${value.proof}' class='thumbnail' >View</a></td>
-                <td>${value.action}</td>
-                </tr>`;
-                sno++;
-                if (value.insertAccess == false) {
+            if (response.length > 0) {
+                $.each(response, function (key, value) {
+                    appendData += `<tr>
+                    <td>${sno}</td>
+                    <td>${value.emp_name}</td>
+                    <td>${value.designation}</td>
+                    <td>${value.dob}</td>
+                    <td>${value.doj}</td>
+                    <td>${value.mobile}</td>
+                    <td>${value.email}</td>
+                    <td>${value.blood_group}</td>
+                    <td><a href='uploads/${value.proof}' class='thumbnail' >View</a></td>
+                    <td>${value.action}</td>
+                    </tr>`;
+                    sno++;
+                    if (value.insertAccess == false) {
+                        $('#add_emp').hide();
+                    }
+                })
+            } else {
+                if (response.insertAccess == false) {
                     $('#add_emp').hide();
                 }
-            })
+                appendData += `<tr><td colspan='10' class='text-center'>No Records Found!</td></tr>`;
+            }
             $('#employeeTable tbody').empty().html(appendData);
         },
         error: function () {
@@ -58,7 +67,7 @@ function callEmpOnclickEvents() {
         $('#emp_div').show()
         $('#add_emp_form input,#emp_id,#old_proof').not("[type=submit]").val('');//clear all data
         $('#add_emp_div').hide()
-        getEmployeeTable();
+        getEmployeeTable(1, '');
     })
     $('#add_emp_form').off().on('submit', function () {
         event.preventDefault();
@@ -67,6 +76,11 @@ function callEmpOnclickEvents() {
         } else {
             swalError('Error', 'Please Fill Mandatory Fields!');
         }
+    })
+    $('#search').off().on('blur', function () {
+        let search = $(this).val();
+        getEmployeeTable(1, search);
+        getEmployeePageCount(search)
     })
 }
 
@@ -140,5 +154,22 @@ function getEmployeeData(emp_id) {
                 swalError('Error', 'Error While fetchin User data!')
             }
         }
+    })
+}
+function getEmployeePageCount(search) {
+    $.post('api/home/getEmployeePages.php', { search }, function (response) {
+        let appendData = ``;
+        appendData += `<nav aria-label="Page navigation example"><ul class="pagination">`;
+        for (let i = 1; i <= response.total_pages; i++) {
+            appendData += `<li class="page-item"><a class="page-link" data-page='${i}' href="#">${i}</a></li>`;
+        }
+        appendData += `</ul></nav>`;
+
+        $('#emp_div .card-footer').empty().html(appendData);
+        $('.page-link').off().on('click', function () {
+            let page = $(this).data('page')
+            let search = $('#search').val()
+            getEmployeeTable(page, search);
+        })
     })
 }
