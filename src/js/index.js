@@ -41,12 +41,59 @@ $(document).ready(function () {
 
         }
     })
+    $('#user_register').click(function (event) {
+        event.preventDefault();
+        if (validate()) {
+            registerUser();
+        } else {
+            swalError('Error', 'Please fill all fields');
+        }
+    })
 })
-function logout() {
-    $.get('api/index/logout.php', function () {
-        swalSuccess('Success', 'Logged out Successfully!');
-        setTimeout(() => {
-            location.reload();
-        }, 2000);
+
+function validate() {
+    let formData = $('#register_form').serializeArray();
+
+    var response = true;
+
+    $.each(formData, function (index, val) {//will loop thru all the input fields in form
+        response = validateField(val.value);
+        if (response === false) {
+            return false;
+        }
+    })
+    return response;
+
+    function validateField(value) {
+        if (value === '') {
+            event.preventDefault;
+            return false;
+        }
+        return true;
+    }
+}
+
+function registerUser() {
+    var formData = new FormData($('#register_form')[0]);
+    $.ajax({
+        url: 'api/home/submitUser.php',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'post',
+        dataType: 'json',
+        cache: false,
+        success: function (response) {
+            if (response == 'Success') {
+                if ($('#user_id').val() == '') {
+                    swalSuccess('Success', 'User Added Successfully!');
+                } else {
+                    swalSuccess('Success', 'User Updated Successfully!');
+                }
+                $('#login').trigger('click');
+            } else {
+                swalError('Error', response)
+            }
+        }
     })
 }

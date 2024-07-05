@@ -8,22 +8,18 @@ $responseObj = new responseClass();
 $username = $_POST['lusername'];
 $password = $_POST['lpassword'];
 
-$qry = $con->prepare("SELECT * FROM users WHERE `email` = :username");
+$qry = $con->prepare("SELECT * FROM users WHERE `email` = :username and `password` = :password and is_approved = '0' ");
 $qry->bindParam(':username', $username);
+$qry->bindParam(':password', $password);
 $qry->execute();
 
 if ($row = $qry->fetch()) {
-    if (password_verify($password, $row['password'])) {
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['user_name'] = $row['name'];
-
-        $responseObj->respond('Success', 200); // Success
-    } else {
-        $responseObj->respond('Invalid', 400); // Bad Request
-    }
+    $_SESSION['user_id'] = $row['id'];
+    $_SESSION['user_name'] = $row['name'];
+    $_SESSION['user_role'] = $row['role'];
+    $responseObj->respond('Success', 200);
 } else {
-    $responseTxt = 'Invalid';
-    $responseObj->respond($responseTxt, 400); //bad request
+    $responseObj->respond('Invalid', 400);
 }
 
 $con = null;

@@ -42,26 +42,26 @@
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-6 ">
                                     <div class="form-group">
                                         <label for="name">Name&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" type="text" name="name" id="name" placeholder="Enter Name" autocomplete="off" required>
+                                        <input class="form-control mb-3" type="text" name="name" id="name" placeholder="Enter Name" autocomplete="off" required tabindex="1">
 
                                         <label for="password">Password&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Enter Password" required>
+                                        <input class="form-control mb-3" type="password" name="password" id="password" placeholder="Enter Password" required tabindex="3">
 
                                         <label for="mobile">Mobile&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" type="tel" name="mobile" id="mobile" placeholder="Enter Mobile" autocomplete="off" required>
+                                        <input class="form-control mb-3" type="tel" name="mobile" id="mobile" placeholder="Enter Mobile" autocomplete="off" required tabindex="5">
 
                                         <label for="email">Email&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" type="email" name="email" id="email" placeholder="Enter Email" autocomplete="off" required>
+                                        <input class="form-control mb-3" type="email" name="email" id="email" placeholder="Enter Email" autocomplete="off" required tabindex="7">
 
                                         <label for="address">Address&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" name="address" id="address" placeholder="Enter Address" required></input>
+                                        <input class="form-control mb-3" name="address" id="address" placeholder="Enter Address" required tabindex="9"></input>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-6 ">
                                     <div class="form-group">
 
                                         <label for="gender">Gender&nbsp;<span class="text-danger">*</span></label>
-                                        <select class="form-control mb-3" name="gender" id="gender" required>
+                                        <select class="form-control mb-3" name="gender" id="gender" required tabindex="2">
                                             <option value="">Select Gender</option>
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
@@ -69,15 +69,15 @@
                                         </select>
 
                                         <label for="dob">Date of Birth&nbsp;<span class="text-danger">*</span></label>
-                                        <input class="form-control mb-3" type="date" name="dob" id="dob" required>
+                                        <input class="form-control mb-3" type="date" name="dob" id="dob" required tabindex="4">
 
                                         <label for="profile_picture">Profile Picture</label>
-                                        <input class="form-control mb-3" type="file" name="profile_picture" id="profile_picture" accept="image/*">
+                                        <input class="form-control mb-3" type="file" name="profile_picture" id="profile_picture" accept="image/*" tabindex="6">
 
                                         <label for="signature">Signature</label>
-                                        <input class="form-control mb-3" type="file" name="signature" id="signature" accept="image/*">
+                                        <input class="form-control mb-3" type="file" name="signature" id="signature" accept="image/*" tabindex="8">
 
-                                        <input type="submit" id="user_register" class="btn btn-outline-dark" value="Register" style="margin-top: 23px;">
+                                        <input type="submit" id="user_register" class="btn btn-outline-dark" value="Register" style="margin-top: 23px;" tabindex="10">
                                     </div>
                                 </div>
                             </div>

@@ -23,3 +23,4 @@ if (isset($_POST['user_id'])) {
 } else {
     $responseObj->respond("User ID Unavailable", 400);
 }
+$con = null;

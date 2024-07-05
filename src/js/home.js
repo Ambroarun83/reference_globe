@@ -2,16 +2,27 @@ $(document).ready(function () {
     $('#emp').click(function () {
         $(this).addClass('active');
         $('#users').removeClass('active');
-        // $('#emp_div').show();
-        // $('#user_div').hide();
-        $('#main-container').load('views/employeetable.php');
+        $('#main-container').empty().load('views/employeetable.php');
     })
     $('#users').click(function () {
         $(this).addClass('active')
         $('#emp').removeClass('active');
-        // $('#user_div').show();
-        // $('#emp_div').hide();
-        $('#main-container').load('views/usertable.php');
-
+        $('#main-container').empty().load('views/usertable.php');
     })
+    $('#logout').click(function () {
+        swalConfirm('Are You Sure?', "Do you want to logout?", 'Logout', function (response) {
+            if (response) logout();
+        });
+    })
+    $('#users').trigger('click');
+
 })
+
+function logout() {
+    $.get('api/index/logout.php', function () {
+        swalSuccess('Success', 'Logged out Successfully!');
+        setTimeout(() => {
+            location.reload();
+        }, 2000);
+    })
+}

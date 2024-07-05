@@ -15,8 +15,22 @@ function swalError(title, text) {
         title: title,
         text: text,
         icon: "error",
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true
+    });
+}
+function swalConfirm(title, text, button, callback) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: button
+    }).then((result) => {
+        if (result.isConfirmed) {
+            callback(true);
+        } else {
+            callback(false);
+        }
     });
 }
