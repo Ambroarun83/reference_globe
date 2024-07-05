@@ -20,7 +20,7 @@ function getEmployeeTable() {
                 <td>${value.mobile}</td>
                 <td>${value.email}</td>
                 <td>${value.blood_group}</td>
-                <td><a href='uploads/${value.proof}' target='_blank' >View</a></td>
+                <td><a href='uploads/${value.proof}' class='thumbnail' >View</a></td>
                 <td>${value.action}</td>
                 </tr>`;
                 sno++;
@@ -39,6 +39,9 @@ function getEmployeeTable() {
 }
 
 function callEmpOnclickEvents() {
+    $('.thumbnail').viewbox({
+        navButtons: false,
+    });
 
     $('.edit_emp').off().on('click', function () {
         let emp_id = $(this).data('id');
