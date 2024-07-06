@@ -118,11 +118,29 @@
             <div class="card-footer">
                 <div class="col-12" style="text-align:right;">
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Submit">
+                        <input type="button" class="btn btn-primary" value="Preview" id="preview_submit" data-toggle="modal" data-target="#preview_model" />
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="preview_model">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Employee Data Preview</h5>
+            </div>
+            <div class="modal-body" id="previewContent">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="submit_emp">Submit</button>
+                <button type="button" class="btn btn-secondary" id="close_model">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="src/js/emp.js"></script>
