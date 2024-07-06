@@ -65,17 +65,24 @@ function callEmpOnclickEvents() {
     })
     $('#emp_list').off().on('click', function () {
         $('#emp_div').show()
-        $('#add_emp_form input,#emp_id,#old_proof').not("[type=submit]").val('');//clear all data
+        $('#add_emp_form input,#emp_id,#old_proof').not("#preview_submit").val('');//clear all data
         $('#add_emp_div').hide()
         getEmployeeTable(1, '');
     })
-    $('#add_emp_form').off().on('submit', function () {
+    $('#preview_submit').off().on('click', function (event) {
         event.preventDefault();
-        if (validate()) {
-            submitEmployee();
-        } else {
+        if (!validate()) {
             swalError('Error', 'Please Fill Mandatory Fields!');
+        } else {
+            previewEmployeeConrents();
         }
+    })
+    $('#close_model').off().on('click', function (event) {
+        $('#preview_model').modal('hide');
+    })
+    $('#submit_emp').off().on('click', function (event) {
+        event.preventDefault();
+        submitEmployee();
     })
     $('#search').off().on('blur', function () {
         let search = $(this).val();
@@ -129,6 +136,7 @@ function submitEmployee() {
             } else {
                 swalError('Error', response)
             }
+            $('#preview_model').modal('hide');
         }
     })
 }
@@ -172,4 +180,31 @@ function getEmployeePageCount(search) {
             getEmployeeTable(page, search);
         })
     })
+}
+function previewEmployeeConrents() {
+    let appendData = '<ul class="list-group">';
+
+    $('#add_emp_form').find('input').each(function () {
+        let input = $(this);
+        let label = input.prev('label').text();
+        label = label.replace('*', '');//removes mandatory label     
+
+        let value = input.val();
+
+        if (input.attr('type') != 'button') { //avoid button case
+
+            // handle file input
+            if (input.attr('type') === 'file' && input[0].files.length > 0) {
+                var proof = input[0].files[0];
+                value = `<img src='${URL.createObjectURL(proof)}' class="img-preview" />`;
+            }
+
+            appendData += `<li class="list-group-item"><b>${label}</b>: ${value}</li>`;
+        }
+    });
+
+    appendData += '</ul>';
+
+    $('#previewContent').empty().html(appendData);
+    $('#preview_model').modal('show');
 }
