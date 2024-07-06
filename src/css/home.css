@@ -33,3 +33,15 @@
 a {
     text-decoration: none;
 }
+
+.img-preview {
+    border-radius: 5px;
+    border: 1px solid #cecece;
+    object-fit: cover;
+    height: 9em;
+    width: 16em;
+}
+
+li.list-group-item:hover {
+    background-color: #f5e6ff;
+}

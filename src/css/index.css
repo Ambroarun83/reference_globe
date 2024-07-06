@@ -32,6 +32,7 @@
     height: fit-content;
     background-color: transparent;
     box-shadow: 0 0 15px 0;
+    border-radius: 34px;
 }
 
 .login_page>.card {
@@ -39,6 +40,7 @@
     height: 25em;
     background-color: transparent;
     box-shadow: 0 0 15px 0;
+    border-radius: 34px;
 }
 
 .card-title {
