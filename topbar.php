@@ -6,10 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#" id="emp">Employees</a>
+                <a class="nav-link" href="#" id="users">Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="users">Users</a>
+                <a class="nav-link" href="#" id="emp">Employees</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" id="logout">Logout</a>
